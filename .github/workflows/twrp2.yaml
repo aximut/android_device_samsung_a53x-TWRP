@@ -1,0 +1,54 @@
+name: Build TWRP recovery - Test2
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        required: false
+        default: false
+
+env:
+  MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1"
+  # Recovery Manifest URL with -b branch
+  DT_LINK: "https://github.com/aximut/android_device_samsung_a53x-TWRP"
+  # Your Device Tree Link
+  VENDOR: "samsung"
+  # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
+  CODENAME: "a53x"
+  # Your Device's Codename as in used inside DT." Example: nikel, phoenix, ginkgo, etc.
+  KERNEL_LINK: ""
+  # Kernel repo link with optional -b branch. Only for building kernel from source. Ignore if using prebuilt.
+  TARGET: "recoveryimage"
+  # Set as recoveryimage (or bootimage if no recovery partition avaiable)
+  FLAVOR: "eng"
+  # eng by default, change the variable if you want userdebug
+  EXTRA_CMD: ""
+  # For qualcomm FDE devices put git clone https://github.com/omnirom/android_vendor_qcom_opensource_commonsys --depth=1 -b android-9.0 vendor/qcom/opensource/commonsys in EXTRA CMD
+  # If you want to Execute any external Command Before Compilation Starts
+  TZ: "Asia/Kolkata"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+       - name: Cleaning Up Runner
+         uses: rokibhasansagar/slimhub_actions@main
+
+       - name: Recovery Compilation
+         uses: siddhrsh/Recovery-Compiler@production
+             
+       - uses: actions/upload-artifact@v2
+         with:
+          name: recoveryzip
+          path: ${BuildPath}/out/target/product/*/*.zip
+
+       - uses: actions/upload-artifact@v2
+         with:
+          name: recoveryimage
+          path: ${BuildPath}/out/target/product/*/*.img
+
+       - name: Setup tmate session
+         uses: mxschmitt/action-tmate@v3
+         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
