@@ -17,4 +17,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/omni_a53x.mk
+     $(LOCAL_DIR)/twrp_a53x.mk
+     
+COMMON_LUNCH_CHOICES := \
+    twrp_spes-userdebug \
+    twrp_spes-eng

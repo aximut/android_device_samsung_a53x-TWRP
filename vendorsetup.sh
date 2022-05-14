@@ -16,5 +16,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_a53x-userdebug
-add_lunch_combo omni_a53x-eng
+add_lunch_combo twrp_a53x-userdebug
+add_lunch_combo twrp_a53x-eng
