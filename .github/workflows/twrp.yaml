@@ -50,7 +50,6 @@ jobs:
          run: |
               cd work
               . build/envsetup.sh &&lunch twrp_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
-              find out
              
        - uses: actions/upload-artifact@v2
          with:
