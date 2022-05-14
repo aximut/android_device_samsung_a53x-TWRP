@@ -1,4 +1,4 @@
-# Samsung Galaxy A53 5G - TWRP
+# TWRP Device Tree for Samsung Galaxy A53 5G
 
 The device tree for TWRP of the Samsung Galaxy A53 (a53x).
 The build is setup as a Github workflow - fast and efficient.
