@@ -6,4 +6,8 @@ The build is setup as a Github workflow - fast and efficient.
 
 THIS IS WORK IN PROGRESS. Joining the development is easy, as the build happens entirely on Github. No local setup required. Just commit your code and obtain the final img file to flash to your phone - simple.
 
+## Building
+
+Just check https://github.com/aximut/android_device_samsung_a53x-TWRP/actions and trigger an action once you want to build a new image.
+
 ![Samsung Galaxy A53 5G](https://images.samsung.com/is/image/samsung/p6pim/de/2202/feature/de-feature-a-cinematic-view-of-your-world-531418753?$FB_TYPE_A_JPG$)
