@@ -24,10 +24,6 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
 
-       - name: Setup tmate session
-         uses: mxschmitt/action-tmate@v3
-         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
-
        - name: Initializing environment
          run: |
             sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
@@ -65,3 +61,7 @@ jobs:
          with:
           name: recoveryimage
           path: work/out/target/product/*/*.img
+
+       - name: Setup tmate session
+         uses: mxschmitt/action-tmate@v3
+         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
