@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
+      dt_link:
+        description: 'Device tree link'
+        required: false
+        default: "https://github.com/aximut/android_device_samsung_a53x-TWRP"
 
 env:
   MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/aximut/android_device_samsung_a53x-TWRP"
+  DT_LINK: "{{ github.event.inputs.dt_link }}"
   # Your Device Tree Link
-  VENDOR: "samsung"
-  # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
-  CODENAME: "a53x"
-  # Your Device's Codename as in used inside DT." Example: nikel, phoenix, ginkgo, etc.
   KERNEL_LINK: ""
   # Kernel repo link with optional -b branch. Only for building kernel from source. Ignore if using prebuilt.
   TARGET: "recoveryimage"
