@@ -1,0 +1,11 @@
+service dsmsd /system/bin/dsms
+	class core
+	user dsms
+	group dsms
+	disabled
+
+on boot
+	start dsmsd
+
+on property:security.dsmsd.enable=false
+	stop dsmsd

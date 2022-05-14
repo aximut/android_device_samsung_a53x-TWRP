@@ -1,0 +1,14 @@
+on post-fs-data
+    mkdir /data/local/dsms 0710 dsms dsms
+    rm /data/local/dsms/preboot.log
+    write /data/local/dsms/preboot.log ""
+    chown dsms dsms /data/local/dsms/preboot.log
+    chmod 0620 /data/local/dsms/preboot.log
+    restorecon_recursive /data/local/dsms
+
+    mkdir /efs/dsms 0710 dsms dsms
+    chown dsms dsms /efs/dsms/recovery.log
+    chmod 0620 /efs/dsms/recovery.log
+    chown dsms dsms /efs/dsms/factory.log
+    chmod 0620 /efs/dsms/factory.log
+    restorecon_recursive /efs/dsms
